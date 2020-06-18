@@ -7,30 +7,34 @@ namespace conta_bancaria
     {
         static void Main(string[] args)
         {
-            var operacoes = new Operacoes();
-            var listaDeContas = new List<conta>();
-            var conta = new conta();
+
+            var listaDeContas = new List<Conta>();
 
             var op = "";
 
             do
             {
+                Console.WriteLine();
+                Console.WriteLine();
                 Console.WriteLine("Informe a operação a ser realizada: \"s\" para saque, \"d\" para deposito,");
-                Console.WriteLine("\"c\" para cadastrar uma nova conta, \"sair\" para sair");
+                Console.WriteLine("\"c\" para cadastrar uma nova conta, \"L\" para listar as contas cadastradas, \"E\" para ver o saldo da conta, \"sair\" para sair");
 
                 op = Console.ReadLine().ToLower();
 
                 if (op == "c")
-                    conta.CadastrarNovaConta(listaDeContas);
+                    Conta.CadastrarNovaConta(listaDeContas);
 
                 else if (op == "s")
-                {
-                    operacoes.sacar(listaDeContas);
-                }
+                    Conta.Sacar(listaDeContas);
+
                 else if (op == "d")
-                {
-                    operacoes.depositar(listaDeContas);
-                }
+                    Conta.Depositar(listaDeContas);
+
+                else if (op == "l")
+                    Conta.ListarContas(listaDeContas);
+
+                else if (op == "e")
+                    Conta.VerSaldo(listaDeContas);
             }
             while (op != "sair");
         }
